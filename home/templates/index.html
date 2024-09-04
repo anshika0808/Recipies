@@ -1,0 +1,39 @@
+{%extends "base.html" %}
+{% block start %}
+    <h5>yey ffuttfiyf</h5>
+    <hr>
+   
+    <a href="/about/">about</a> |
+    <a href="/contact/">contact</a> |
+    <a href="/dishes/">Dishes</a> 
+    <table class="container">
+      <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>age</th>
+          <th>can vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{people.name}}</td>
+        <td>{{people.age}}</td>
+        <td bgcolor='green'>{% if people.age >= 18 %}
+                👍
+            {% else %}
+                👎
+            
+
+                {% endif%}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {{text|truncatechars:11}}
+    {% if cucumber in vegetables %}
+      yes available
+    {% else %}
+     not available
+     {%endif%}
+    
+
+{% endblock %}

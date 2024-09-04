@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block start %}
+<a href="/about/">about</a> |
+<a href=" /">Home</a> 
+<div class="container mt-5">
+<form class="col-6 mx-auto card p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+  {%csrf_token %}
+  <h2> Add Dish</h2>
+  <hr>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Recipie name</label>
+      <input type="text" class="form-control"  name="dish_name" required type="text">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Recipie description</label>
+      <textarea class="form-control"  name="dish_desc" required></textarea>
+    </div>
+    <div class="mb-3" >
+      <label for="exampleInputPassword1" class="form-label">Recipie Image</label>
+      <input type="file" class="form-control" name="dish_image">
+    </div>
+    <button type="submit" class="btn btn-success">Add Recipie</button>
+  </form>
+  <div class="mt-5">
+    <div class="mx-auto col-6">
+      <form>
+      <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Search Food</label>
+      <input type="text" class="form-control"  name="Search">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  </div>
+</div>
+  {% if dish %}
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Dish Name</th>
+        <th scope="col">Dish Description</th>
+        <th scope="col">Dish Image</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for dishes in dish%}
+      <tr>
+        <td scope="row">{{ forloop.counter}}</td>
+        <td>{{dishes.dish_name}}</td>
+        <td>{{dishes.dish_desc}}</td>
+        <td><img src='/media/{{dishes.dish_image}}' style="height: 100px"></td>
+        <td><a href="{% url 'Delete_dish' dishes.id %}" class="btn btn-danger m-2">Delete</a>
+            <a href="{% url 'update_dish' dishes.id %}" class="btn btn-danger">Update</a></td>
+      </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+ {% endif %}
+ 
+</div>
+{% endblock %}

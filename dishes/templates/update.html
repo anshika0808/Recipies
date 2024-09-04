@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block start%}
+<a href="/about/">about</a> |
+<a href=" /">Home</a> 
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+      {%csrf_token %}
+      <h2> Add Dish</h2>
+      <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Recipie name</label>
+          <input type="text" class="form-control"  name="dish_name" value="{{dish.dish_name}}">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Recipie description</label>
+          <textarea class="form-control"  name="dish_desc" >{{dish.dish_desc}}</textarea>
+        </div>
+        <div class="mb-3" >
+          <label for="exampleInputPassword1" class="form-label">Recipie Image</label>
+          <input type="file" class="form-control" name="dish_image">
+        </div>
+        <button type="submit" class="btn btn-success">Update Recipie</button>
+      </form>
+      
+    </div>
+{% endblock %}
